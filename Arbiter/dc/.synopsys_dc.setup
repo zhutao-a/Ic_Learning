@@ -1,0 +1,9 @@
+source ./common_setup.tcl
+source ./dc_setup.tcl
+echo "\n====================================="
+echo "\nLibrary Settings:"
+echo "search_path: $search_path"
+echo "link_library: $link_library"
+echo "target_library: $target_library"
+echo "\n====================================="
+echo "\n.synopsys_dc.setup run to end...\n"
