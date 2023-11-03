@@ -1,0 +1,21 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_master.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ahb_master
+WARNING: [VRFC 10-2096] empty statement in sequential block [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_master.v:121]
+WARNING: [VRFC 10-2096] empty statement in sequential block [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_master.v:129]
+WARNING: [VRFC 10-2096] empty statement in sequential block [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_master.v:136]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_slave.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ahb_slave
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ahb_top
+INFO: [VRFC 10-2458] undeclared symbol hsel_1, assumed default net type wire [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_top.v:62]
+INFO: [VRFC 10-2458] undeclared symbol hsel_2, assumed default net type wire [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_top.v:73]
+INFO: [VRFC 10-2458] undeclared symbol hsel_3, assumed default net type wire [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_top.v:84]
+INFO: [VRFC 10-2458] undeclared symbol hsel_4, assumed default net type wire [C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/ahb_top.v:95]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sources_1/new/mux.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mux
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.srcs/sim_1/new/tb_ahb_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ahb_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/password_is_447/Desktop/BaiduSyncdisk/verilog/AHB_TEST/AHB_TEST.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
