@@ -1,5 +1,7 @@
 ahb总线开源verilog项目：
 https://aijishu.com/a/1060000000296101
+https://github.com/adki/AMBA_AXI_AHB_APB/tree/master/codes/ahb_to_ahb
+https://github.com/lucky-wfw/ARM_AMBA_Design/tree/main/ARM_SOC
 
 介绍ahb总线：
 https://blog.csdn.net/weixin_46022434/article/details/104987905
