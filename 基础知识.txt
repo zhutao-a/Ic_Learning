@@ -1,1 +1,67 @@
-ahb总线开源verilog项目：https://aijishu.com/a/1060000000296101
+def:Design Exchange Format
+lef:Library Exchange Format
+sdc:synopsys design constrains
+sdf:Standard Delay Format
+spef:Standard Parasitic Exchange Format
+
+Design Exchange Format (DEF) is an open specification for representing physical layout of an integrated circuit in an ASCII format. It represents the netlist and circuit layout.
+Library Exchange Format (LEF) is a specification for representing the physical layout of an integrated circuit in an ASCII format. It includes design rules and abstract information about the standard cells.
+DEF包含的东西：设计中的不同组件、组件放置在设计中的位置、组件如何放置的、设计的大小
+
+UPF:
+The IC Compiler II tool uses the Unified Power Format (UPF) to specify the power intent for multivoltage designs. 
+This topic provides an overview of the UPF concepts and the supported UPF flows.
+
+testify可以说是最流行的Go语言测试库了。
+testify提供了很多方便的函数帮助我们做assert和错误信息输出。
+使用标准库testing，我们需要自己编写各种条件判断，根据判断结果决定输出对应的信息。
+
+IBM Spectrum LSF ("LSF" ，简称负载共享设施) 软件是业界领先的企业级软件，用于在现有异构 IT 资源之间分发工作，以创建共享，可扩展和容错的基础架构，从而提供更快，均衡，更可靠的工作负载性能并降低成本。
+
+G:\R&D Division\PV_team\backup中含有一个基础知识介绍的ppt，包含G盘介绍、会议、工作环境配置、LSF Tesify%Harness介绍的PPT链接、事件状态说明等
+
+在运行PrimeTime的pt.tcl中，为了输出.sdf文件，采用以下命令：
+write_sdf -version 3.0 ./data/top.sdf -input_port_nets -output_port_nets
+
+打开pt的gui界面
+change_selection [current_design]
+start_gui
+
+查看指定时序路径电路图命令：
+set path [get_timing_paths -from ethmac/miim1/LatchByte_reg_0_ -to ethmac/miim1/shftrg/LinkFail_reg -path_type full_clock_expanded]
+change_selection [get_attribute [get_attribute $path  points] object]
+change_selection [get_attribute [get_attribute [get_attribute $path capture_clock_paths] points] object] -add
+change_selection [get_attribute [get_attribute [get_attribute $path launch_clock_paths] points] object] -add
+
+同时输出到文件夹并在终端显示：
+用法 redirect -tee ${RPT_DIR}/analyze_timing.${stage}.rpt {analyze_timing -full}
+redirect -tee filename {command}
+#CK1有另一种写法  analyze_timing > analyze_timing.rpt
+#CK1:diff golden/... ... -ignore #
+
+遇到.lib.gz的工艺库时，提取单元库需要先解压 gzip -d filename再运行lib_split.py
+
+PT报道时序是，带有&表示是PT、DC等工具算出来的，*表示是从sdf、spef等中提取出来的（标注的）
+
+利用set_annonate_attribute来设置transition time并report
+report_attribute [get_pins -hierarchical] -attributes {actual_fall_transition_min actual_fall_transition_max actual_rise_transition_min actual_rise_transition_max} -summary -nosplit > transition.file 
+
+get_object_name [get_attribute [get_timing_path ...] endpoints]
+
+显示path_endpoint的命令
+get_object_name [get_attribute [get_timing_paths -from in -to {ff0 out} -max_path 2] endpoint]
+
+ICC2运行脚本中的4个主要步骤
+floorplan.tcl->生成site row, track等，产生cell以及放置port，此时可以看到leakage power
+placement.tcl->放置cell并进行优化，如删除多余cell等
+cts.tcl->产生时钟树并对时钟树绕线
+route.tcl->对data path进行绕线
+
+gvim一个窗口打开两文件
+vim -On file1 file2
+vsp filename打开另一文件
+ctrl+w q关闭当前窗口
+
+
+
+

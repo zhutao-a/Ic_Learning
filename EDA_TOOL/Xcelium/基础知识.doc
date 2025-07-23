@@ -1,0 +1,162 @@
+def:Design Exchange Format
+lef:Library Exchange Format
+sdc:synopsys design constrains
+sdf:Standard Delay Format
+spef:Standard Parasitic Exchange Format
+
+Design Exchange Format (DEF) is an open specification for representing physical layout of an integrated circuit in an ASCII format. It represents the netlist and circuit layout.
+Library Exchange Format (LEF) is a specification for representing the physical layout of an integrated circuit in an ASCII format. It includes design rules and abstract information about the standard cells.
+DEF包含的东西：设计中的不同组件、组件放置在设计中的位置、组件如何放置的、设计的大小
+
+testify可以说是最流行的Go语言测试库了。
+testify提供了很多方便的函数帮助我们做assert和错误信息输出。
+使用标准库testing，我们需要自己编写各种条件判断，根据判断结果决定输出对应的信息。
+
+视频1：[sacn_reorder]1_1 with Amanda-20230724_105959-会议记录
+具体内容：用公司的EDA软件（包含amazedrc、amazefp、amazesys、amazetuner）与ICC2跑出来的结果做比较
+视频2：DEF Introduction-20230713_150448-会议记录
+具体内容：介绍DEF，介绍DEF中含有的组件内容，运行了xda -f xda.tcl查看floorplan
+视频3：how_to_make_good_use_of_farm_20221222
+具体内容：介绍FARM的使用以便减短PV总体case的运行时间
+视频4：testify_harness_20220608
+具体内容：介绍xda_rd中testcase的运行，以及每个testcase的checkpoint
+视频5：Training  verilog related DB object a. . . - 2022年8月4日 14.01.28
+具体内容：一个关于verolig的示例
+
+所有基本的testcase存放在/xda_rd/regression/testcases/analysis文件夹下，具体在bdd、dc、power、rce、scheme、timing等目录下的function文件夹下
+如:/xda_rd/regression/testcases/analysis/timing/function/set_max_transition_value_unit_C12
+
+环境配置：
+利用echo $SHELL查看shell版本
+
+利用ssh -X 10.21.24.28登录远程服务器
+首先将.cshrc 和setup.csh存放到home/tzhu01下并修改路径为oshome/tzhu01
+由于.cshrc中含有source ~/setup.csh，而~在这指的是/home/tzhu01（具体看自己的情况），因此需要把setup.csh放到~下
+（也可以把这两文件再放置在oshome/tzhu01下，此处删掉了还是能正常运行）
+
+csh转到cshell
+which setb查看是否成功
+
+免费使用chatgpt网址
+https://github.com/xx025/carrot
+
+
+IBM Spectrum LSF ("LSF" ，简称负载共享设施) 软件是业界领先的企业级软件，用于在现有异构 IT 资源之间分发工作，以创建共享，可扩展和容错的基础架构，从而提供更快，均衡，更可靠的工作负载性能并降低成本。
+
+G:\R&D Division\PV_team\backup中含有一个基础知识介绍的ppt，包含G盘介绍、会议、工作环境配置、LSF Tesify%Harness介绍的PPT链接、事件状态说明等
+
+UPF:
+The IC Compiler II tool uses the Unified Power Format (UPF) to specify the power intent for multivoltage designs. 
+This topic provides an overview of the UPF concepts and the supported UPF flows.
+
+申请服务器上的机器（产生小黑窗）
+source /oshome/jjin/.cshrc
+bd -XF konsole &
+
+
+在testcase通过后将local的case添加到center的流程：
+在相对路径下（下一级包含testcase）
+1、tcci -a -te $name
+2、(db/sdf/function的case需要加上keyword:)   
+tcconfig keyword -te $name -a db sdf db_gate timer_gating
+(analysis/timing/function的case需要加上keyword:)
+tcconfig keyword -te $name -a analysis timing timer_gating
+3、在issue上edit 将casename填入reg testcase
+
+根据id下载case
+ipull id -a（填写id号即可）
+解压下载的.tar.gz压缩包
+tar -zxvf $待解压的文件名
+修改data文件夹的权限以便能将top.spf放到data文件夹下
+chmod u+w -cvR data
+
+熟悉XDA.ctl和PT.tcl的写法
+修改lib大小的命令行
+python3 /oshome/jwei/SCRIPTS/libs/lib_split.py -lib_file scc12nsfe_96sdb_6tc20p52_enhance_ulvt_ffgs_v0p88_0c_ccs.lib -lib_cells INV6_96S6X2T20UL SDQV1_96S6T20UL -new_lib_file top.lib
+然后需要修改xda.tcl中的读取路径
+.lib文件存放的位置
+/share/xda_rd/regression/data_shared/libs/SMIC12/lib/std/0.8v/scc12nsfe_96sdb_6tc20p52_enhance_ulvt_ffgs_v0p88_0c_ccs.lib
+/oshome/jwei/SCRIPTS/libs/lib_split.py -lib_file /share/xda_rd/regression/data_shared/libs/SMIC12/lib/std/0.8v/scc12nsfe_96sdb_6tc20p52_enhance_ulvt_ffgs_v0p88_0c_ccs.lib -lib_cells -new_lib_file ./data/top.lib
+
+修改xda运行版本的两种方式（看哪一个有用）：
+/Jenkins/cm/night_build/xtimes_xda/master/build-20230919/release/xda_cmd/xda
+/share/xda_rd/cm-build/amazesys/build-20230906/xda/bin/xda
+
+使用testify去验证testcase是否通过
+testify -te $testcaseName -b $binary -o $outDir -tdir $local_testcase_folder
+testify -te $testcaseName -b $binary -o $outDir -tlist $local_testify.list
+
+在运行PrimeTime的pt.tcl中，为了输出.sdf文件，采用以下命令：
+write_sdf -version 3.0 ./data/top.sdf -input_port_nets -output_port_nets
+
+TCL基本语法学习网站：
+https://www.yiibai.com/tcl/tcl_basic_syntax.html
+https://www.cnblogs.com/movit/p/14811489.html
+菜鸟教程C++学习网站：
+https://www.runoob.com/cplusplus/cpp-tutorial.html
+
+打开pt的gui界面
+change_selection [current_design]
+start_gui
+
+存放的unit case的路径：
+/share/project/jjin/redmine_tests
+/oshome/jyang01/for_yj
+
+介绍.lib工艺库的网页：
+https://zhuanlan.zhihu.com/p/243485197
+介绍IC设计流程中的常见缩写的全称，如文件格式
+https://www.cnblogs.com/harrypotterisdead/p/15164363.html
+
+case模板：
+2324所有path全违例，3411含有spef，13855作为4个path group 双sdc基准,13178仅含两ff
+
+查看指定时序路径电路图命令：
+set path [get_timing_paths -from ethmac/miim1/LatchByte_reg_0_ -to ethmac/miim1/shftrg/LinkFail_reg -path_type full_clock_expanded]
+change_selection [get_attribute [get_attribute $path  points] object]
+change_selection [get_attribute [get_attribute [get_attribute $path capture_clock_paths] points] object] -add
+change_selection [get_attribute [get_attribute [get_attribute $path launch_clock_paths] points] object] -add
+
+同时输出到文件夹并在终端显示：
+用法 redirect -tee ${RPT_DIR}/analyze_timing.${stage}.rpt {analyze_timing -full}
+redirect -tee filename {command}
+#CK1有另一种写法  analyze_timing > analyze_timing.rpt
+#CK1:diff golden/... ... -ignore #
+
+遇到.lib.gz的工艺库时，提取单元库需要先解压 gzip -d filename再运行lib_split.py
+
+PT报道时序是，带有&表示是PT、DC等工具算出来的，*表示是从sdf、spef等中提取出来的（标注的）
+
+利用set_annonate_attribute来设置transition time并report
+report_attribute [get_pins -hierarchical] -attributes {actual_fall_transition_min actual_fall_transition_max actual_rise_transition_min actual_rise_transition_max} -summary -nosplit > transition.file 
+
+tsmc std cell命名规则
+https://blog.csdn.net/cy413026/article/details/86650096
+
+get_object_name [get_attribute [get_timing_path ...] endpoints]
+icc2脚本
+/oshome/jjin/WORK/sdf_flow/smic12/no_loop
+/oshome/jjin/WORK/sdf_flow/tsmcn7/for_cindy
+
+对于xda.tcl中含有sdc command，需要在首行添加
+source /share/xda_rd/regression/utils/opt/timerCommon.tcl
+sed -i '1i\source /share/xda_rd/regression/utils/opt/timerCommon.tcl' xda.tcl
+
+ecocase的example
+/share/project/jjin/mytestify/testcases/eco/flow/forRnD/S28/leakage/eco_leakage_minsoc_top_28nm
+
+
+显示path_endpoint的命令
+get_object_name [get_attribute [get_timing_paths -from in -to {ff0 out} -max_path 2] endpoint]
+
+ICC2运行脚本中的4个主要步骤
+floorplan.tcl->生成site row, track等，产生cell以及放置port，此时可以看到leakage power
+placement.tcl->放置cell并进行优化，如删除多余cell等
+cts.tcl->产生时钟树并对时钟树绕线
+route.tcl->对data path进行绕线
+
+pt产生时序文件用于amazeeco
+/oshome/jjin/s02/QOR/eco_leakage/230910_si/eco_leakage_openc906_t7_20230910_14h33m54s/pt.tcl
+生成data的两行
+source /share/project/huag/XDA/ECO/dump_report/kepler/dump_pt_to_amazeeco_by_endpoint.tcl
+report_timing_to_amazeeco
