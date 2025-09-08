@@ -118,17 +118,17 @@ module axil_crossbar_wr #
     output wire [M_COUNT-1:0]               m_axil_bready
 );
 
-parameter CL_S_COUNT = $clog2(S_COUNT);
-parameter CL_M_COUNT = $clog2(M_COUNT);
+parameter CL_S_COUNT = clog2(S_COUNT);
+parameter CL_M_COUNT = clog2(M_COUNT);
 parameter M_COUNT_P1 = M_COUNT+1;
-parameter CL_M_COUNT_P1 = $clog2(M_COUNT_P1);
+parameter CL_M_COUNT_P1 = clog2(M_COUNT_P1);
 
 integer i;
 
 // check configuration
 initial begin
     for (i = 0; i < M_COUNT*M_REGIONS; i = i + 1) begin
-        if (M_ADDR_WIDTH[i*32 +: 32] && (M_ADDR_WIDTH[i*32 +: 32] < $clog2(STRB_WIDTH) || M_ADDR_WIDTH[i*32 +: 32] > ADDR_WIDTH)) begin
+        if (M_ADDR_WIDTH[i*32 +: 32] && (M_ADDR_WIDTH[i*32 +: 32] < clog2(STRB_WIDTH) || M_ADDR_WIDTH[i*32 +: 32] > ADDR_WIDTH)) begin
             $error("Error: value out of range (instance %m)");
             $finish;
         end
@@ -164,7 +164,7 @@ generate
 
     for (m = 0; m < S_COUNT; m = m + 1) begin : s_ifaces
         // response routing FIFO
-        localparam FIFO_ADDR_WIDTH = $clog2(S_ACCEPT[m*32 +: 32])+1;
+        localparam FIFO_ADDR_WIDTH = clog2(S_ACCEPT[m*32 +: 32])+1;
 
         reg [FIFO_ADDR_WIDTH+1-1:0] fifo_wr_ptr_reg = 0;
         reg [FIFO_ADDR_WIDTH+1-1:0] fifo_rd_ptr_reg = 0;
@@ -380,7 +380,7 @@ generate
 
     for (n = 0; n < M_COUNT; n = n + 1) begin : m_ifaces
         // response routing FIFO
-        localparam FIFO_ADDR_WIDTH = $clog2(M_ISSUE[n*32 +: 32])+1;
+        localparam FIFO_ADDR_WIDTH = clog2(M_ISSUE[n*32 +: 32])+1;
 
         reg [FIFO_ADDR_WIDTH+1-1:0] fifo_wr_ptr_reg = 0;
         reg [FIFO_ADDR_WIDTH+1-1:0] fifo_rd_ptr_reg = 0;

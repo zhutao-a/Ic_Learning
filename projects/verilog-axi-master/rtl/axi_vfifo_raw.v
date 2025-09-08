@@ -155,7 +155,7 @@ module axi_vfifo_raw #
     output wire                          sts_read_active
 );
 
-localparam ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << $clog2(AXI_STRB_WIDTH);
+localparam ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << clog2(AXI_STRB_WIDTH);
 
 reg fifo_reset_reg = 1'b1, fifo_reset_next;
 reg fifo_enable_reg = 1'b0, fifo_enable_next;

@@ -90,7 +90,7 @@ module axil_dp_ram #
     input  wire                   s_axil_b_rready
 );
 
-parameter VALID_ADDR_WIDTH = ADDR_WIDTH - $clog2(STRB_WIDTH);
+parameter VALID_ADDR_WIDTH = ADDR_WIDTH - clog2(STRB_WIDTH);
 parameter WORD_WIDTH = STRB_WIDTH;
 parameter WORD_SIZE = DATA_WIDTH/WORD_WIDTH;
 

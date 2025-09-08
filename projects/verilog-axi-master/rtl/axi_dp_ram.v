@@ -130,7 +130,7 @@ module axi_dp_ram #
     input  wire                   s_axi_b_rready
 );
 
-parameter VALID_ADDR_WIDTH = ADDR_WIDTH - $clog2(STRB_WIDTH);
+parameter VALID_ADDR_WIDTH = ADDR_WIDTH - clog2(STRB_WIDTH);
 parameter WORD_WIDTH = STRB_WIDTH;
 parameter WORD_SIZE = DATA_WIDTH/WORD_WIDTH;
 
@@ -141,7 +141,7 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(WORD_WIDTH) != WORD_WIDTH) begin
+    if (2**clog2(WORD_WIDTH) != WORD_WIDTH) begin
         $error("Error: AXI word width must be even power of two (instance %m)");
         $finish;
     end

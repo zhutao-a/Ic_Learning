@@ -122,12 +122,12 @@ module axi_cdma #
 
 parameter AXI_WORD_WIDTH = AXI_STRB_WIDTH;
 parameter AXI_WORD_SIZE = AXI_DATA_WIDTH/AXI_WORD_WIDTH;
-parameter AXI_BURST_SIZE = $clog2(AXI_STRB_WIDTH);
+parameter AXI_BURST_SIZE = clog2(AXI_STRB_WIDTH);
 parameter AXI_MAX_BURST_SIZE = AXI_MAX_BURST_LEN << AXI_BURST_SIZE;
 
-parameter OFFSET_WIDTH = AXI_STRB_WIDTH > 1 ? $clog2(AXI_STRB_WIDTH) : 1;
+parameter OFFSET_WIDTH = AXI_STRB_WIDTH > 1 ? clog2(AXI_STRB_WIDTH) : 1;
 parameter OFFSET_MASK = AXI_STRB_WIDTH > 1 ? {OFFSET_WIDTH{1'b1}} : 0;
-parameter ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << $clog2(AXI_STRB_WIDTH);
+parameter ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << clog2(AXI_STRB_WIDTH);
 parameter CYCLE_COUNT_WIDTH = LEN_WIDTH - AXI_BURST_SIZE + 1;
 
 parameter STATUS_FIFO_ADDR_WIDTH = 5;
@@ -140,7 +140,7 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(AXI_WORD_WIDTH) != AXI_WORD_WIDTH) begin
+    if (2**clog2(AXI_WORD_WIDTH) != AXI_WORD_WIDTH) begin
         $error("Error: AXI word width must be even power of two (instance %m)");
         $finish;
     end

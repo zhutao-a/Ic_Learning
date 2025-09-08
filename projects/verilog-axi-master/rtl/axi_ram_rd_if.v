@@ -102,7 +102,7 @@ module axi_ram_rd_if #
     output wire                     ram_rd_resp_ready
 );
 
-parameter VALID_ADDR_WIDTH = ADDR_WIDTH - $clog2(STRB_WIDTH);
+parameter VALID_ADDR_WIDTH = ADDR_WIDTH - clog2(STRB_WIDTH);
 parameter WORD_WIDTH = STRB_WIDTH;
 parameter WORD_SIZE = DATA_WIDTH/WORD_WIDTH;
 
@@ -113,7 +113,7 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(WORD_WIDTH) != WORD_WIDTH) begin
+    if (2**clog2(WORD_WIDTH) != WORD_WIDTH) begin
         $error("Error: AXI word width must be even power of two (instance %m)");
         $finish;
     end
@@ -200,7 +200,7 @@ always @* begin
                 read_region_next = s_axi_arregion;
                 read_aruser_next = s_axi_aruser;
                 read_count_next = s_axi_arlen;
-                read_size_next = s_axi_arsize < $clog2(STRB_WIDTH) ? s_axi_arsize : $clog2(STRB_WIDTH);
+                read_size_next = s_axi_arsize < clog2(STRB_WIDTH) ? s_axi_arsize : clog2(STRB_WIDTH);
                 read_burst_next = s_axi_arburst;
 
                 s_axi_arready_next = 1'b0;

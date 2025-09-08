@@ -1,0 +1,4 @@
+Command Line: /home/synopsys/verdi/Verdi_O-2018.09-SP2/platform/LINUXAMD64/bin/Novas -sv ./common/function.v -f rtl/filelist.f
+uname(Linux IC_EDA 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64)
+Disabled AskUser2 Message (Response 0): Close all windows and exit verdi?
+au time 20.633630 1.181422 0.982417 delta 265879552 265879552 total 690962432 690962432

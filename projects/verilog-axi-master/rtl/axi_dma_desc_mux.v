@@ -55,7 +55,7 @@ module axi_dma_desc_mux #
     parameter S_TAG_WIDTH = 8,
     // Output tag field width (towards CDMA module)
     // Additional bits required for response routing
-    parameter M_TAG_WIDTH = S_TAG_WIDTH+$clog2(PORTS),
+    parameter M_TAG_WIDTH = S_TAG_WIDTH+clog2(PORTS),
     // select round robin arbitration
     parameter ARB_TYPE_ROUND_ROBIN = 1,
     // LSB priority selection
@@ -112,12 +112,12 @@ module axi_dma_desc_mux #
     output wire [PORTS-1:0]                 m_axis_desc_status_valid
 );
 
-parameter CL_PORTS = $clog2(PORTS);
+parameter CL_PORTS = clog2(PORTS);
 
 // check configuration
 initial begin
-    if (M_TAG_WIDTH < S_TAG_WIDTH+$clog2(PORTS)) begin
-        $error("Error: M_TAG_WIDTH must be at least $clog2(PORTS) larger than S_TAG_WIDTH (instance %m)");
+    if (M_TAG_WIDTH < S_TAG_WIDTH+clog2(PORTS)) begin
+        $error("Error: M_TAG_WIDTH must be at least clog2(PORTS) larger than S_TAG_WIDTH (instance %m)");
         $finish;
     end
 end

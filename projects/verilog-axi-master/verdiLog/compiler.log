@@ -1,0 +1,86 @@
+*design* DebussyLib (btIdent Verdi_O-2018.09-SP2)
+Command arguments:
+    +define+verilog
+    -sv
+    ./common/function.v
+    -f rtl/filelist.f
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/arbiter.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_adapter.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_adapter_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_adapter_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_cdc.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_cdc_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_cdc_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_crossbar.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_crossbar_addr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_crossbar_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_crossbar_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_dp_ram.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_interconnect.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_ram.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_register.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_register_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_register_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_reg_if.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_reg_if_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axil_reg_if_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_adapter.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_adapter_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_adapter_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_axil_adapter.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_axil_adapter_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_axil_adapter_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_cdma.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_cdma_desc_mux.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_crossbar.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_crossbar_addr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_crossbar_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_crossbar_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_dma.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_dma_desc_mux.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_dma_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_dma_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_dp_ram.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_fifo.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_fifo_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_fifo_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_interconnect.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_ram.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_ram_rd_if.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_ram_wr_if.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_ram_wr_rd_if.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_register.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_register_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_register_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo_dec.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo_enc.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo_raw.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo_raw_rd.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/axi_vfifo_raw_wr.v
+        /mnt/hgfs/github/IC_Learning/projects/verilog-axi-master/rtl/priority_encoder.v
+
+Highest level modules:
+axil_adapter
+axil_cdc
+axil_crossbar
+axil_dp_ram
+axil_interconnect
+axil_ram
+axil_register
+axil_reg_if
+axi_adapter
+axi_axil_adapter
+axi_cdma
+axi_cdma_desc_mux
+axi_crossbar
+axi_dma
+axi_dma_desc_mux
+axi_dp_ram
+axi_fifo
+axi_interconnect
+axi_ram
+axi_register
+axi_vfifo
+
+Total	0 error(s),   0 warning(s)

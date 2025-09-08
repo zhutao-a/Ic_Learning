@@ -47,7 +47,7 @@ module axi_crossbar_wr #
     parameter S_ID_WIDTH = 8,
     // Output ID field width (towards AXI slaves)
     // Additional bits required for response routing
-    parameter M_ID_WIDTH = S_ID_WIDTH+$clog2(S_COUNT),
+    parameter M_ID_WIDTH = S_ID_WIDTH+clog2(S_COUNT),
     // Propagate awuser signal
     parameter AWUSER_ENABLE = 0,
     // Width of awuser signal
@@ -163,17 +163,17 @@ module axi_crossbar_wr #
     output wire [M_COUNT-1:0]               m_axi_bready
 );
 
-parameter CL_S_COUNT = $clog2(S_COUNT);
-parameter CL_M_COUNT = $clog2(M_COUNT);
+parameter CL_S_COUNT = clog2(S_COUNT);
+parameter CL_M_COUNT = clog2(M_COUNT);
 parameter M_COUNT_P1 = M_COUNT+1;
-parameter CL_M_COUNT_P1 = $clog2(M_COUNT_P1);
+parameter CL_M_COUNT_P1 = clog2(M_COUNT_P1);
 
 integer i;
 
 // check configuration
 initial begin
-    if (M_ID_WIDTH < S_ID_WIDTH+$clog2(S_COUNT)) begin
-        $error("Error: M_ID_WIDTH must be at least $clog2(S_COUNT) larger than S_ID_WIDTH (instance %m)");
+    if (M_ID_WIDTH < S_ID_WIDTH+clog2(S_COUNT)) begin
+        $error("Error: M_ID_WIDTH must be at least clog2(S_COUNT) larger than S_ID_WIDTH (instance %m)");
         $finish;
     end
 
@@ -490,7 +490,7 @@ generate
         // in-flight transaction count
         wire trans_start;
         wire trans_complete;
-        reg [$clog2(M_ISSUE[n*32 +: 32]+1)-1:0] trans_count_reg = 0;
+        reg [clog2(M_ISSUE[n*32 +: 32]+1)-1:0] trans_count_reg = 0;
 
         wire trans_limit = trans_count_reg >= M_ISSUE[n*32 +: 32] && !trans_complete;
 

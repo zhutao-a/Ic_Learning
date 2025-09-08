@@ -73,8 +73,8 @@ module axil_adapter_rd #
     output wire                     m_axil_rready
 );
 
-parameter S_ADDR_BIT_OFFSET = $clog2(S_STRB_WIDTH);
-parameter M_ADDR_BIT_OFFSET = $clog2(M_STRB_WIDTH);
+parameter S_ADDR_BIT_OFFSET = clog2(S_STRB_WIDTH);
+parameter M_ADDR_BIT_OFFSET = clog2(M_STRB_WIDTH);
 parameter S_WORD_WIDTH = S_STRB_WIDTH;
 parameter M_WORD_WIDTH = M_STRB_WIDTH;
 parameter S_WORD_SIZE = S_DATA_WIDTH/S_WORD_WIDTH;
@@ -88,7 +88,7 @@ parameter DATA_WIDTH = EXPAND ? M_DATA_WIDTH : S_DATA_WIDTH;
 parameter STRB_WIDTH = EXPAND ? M_STRB_WIDTH : S_STRB_WIDTH;
 // required number of segments in wider bus
 parameter SEGMENT_COUNT = EXPAND ? (M_STRB_WIDTH / S_STRB_WIDTH) : (S_STRB_WIDTH / M_STRB_WIDTH);
-parameter SEGMENT_COUNT_WIDTH = SEGMENT_COUNT == 1 ? 1 : $clog2(SEGMENT_COUNT);
+parameter SEGMENT_COUNT_WIDTH = SEGMENT_COUNT == 1 ? 1 : clog2(SEGMENT_COUNT);
 // data width and keep width per segment
 parameter SEGMENT_DATA_WIDTH = DATA_WIDTH / SEGMENT_COUNT;
 parameter SEGMENT_STRB_WIDTH = STRB_WIDTH / SEGMENT_COUNT;
@@ -110,12 +110,12 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(S_WORD_WIDTH) != S_WORD_WIDTH) begin
+    if (2**clog2(S_WORD_WIDTH) != S_WORD_WIDTH) begin
         $error("Error: AXI slave interface word width must be even power of two (instance %m)");
         $finish;
     end
 
-    if (2**$clog2(M_WORD_WIDTH) != M_WORD_WIDTH) begin
+    if (2**clog2(M_WORD_WIDTH) != M_WORD_WIDTH) begin
         $error("Error: AXI master interface word width must be even power of two (instance %m)");
         $finish;
     end

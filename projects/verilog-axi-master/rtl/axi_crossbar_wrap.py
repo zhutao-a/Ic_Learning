@@ -86,7 +86,7 @@ module {{name}} #
     parameter S_ID_WIDTH = 8,
     // Output ID field width (towards AXI slaves)
     // Additional bits required for response routing
-    parameter M_ID_WIDTH = S_ID_WIDTH+$clog2(S_COUNT),
+    parameter M_ID_WIDTH = S_ID_WIDTH+clog2(S_COUNT),
     // Propagate awuser signal
     parameter AWUSER_ENABLE = 0,
     // Width of awuser signal

@@ -83,14 +83,14 @@ module axi_crossbar_addr #
      * Address output
      */
     output wire [3:0]                 m_axi_aregion,
-    output wire [$clog2(M_COUNT)-1:0] m_select,
+    output wire [clog2(M_COUNT)-1:0] m_select,
     output wire                       m_axi_avalid,
     input  wire                       m_axi_aready,
 
     /*
      * Write command output
      */
-    output wire [$clog2(M_COUNT)-1:0] m_wc_select,
+    output wire [clog2(M_COUNT)-1:0] m_wc_select,
     output wire                       m_wc_decerr,
     output wire                       m_wc_valid,
     input  wire                       m_wc_ready,
@@ -109,12 +109,12 @@ module axi_crossbar_addr #
     input  wire                       s_cpl_valid
 );
 
-parameter CL_S_COUNT = $clog2(S_COUNT);
-parameter CL_M_COUNT = $clog2(M_COUNT);
+parameter CL_S_COUNT = clog2(S_COUNT);
+parameter CL_M_COUNT = clog2(M_COUNT);
 
 parameter S_INT_THREADS = S_THREADS > S_ACCEPT ? S_ACCEPT : S_THREADS;
-parameter CL_S_INT_THREADS = $clog2(S_INT_THREADS);
-parameter CL_S_ACCEPT = $clog2(S_ACCEPT);
+parameter CL_S_INT_THREADS = clog2(S_INT_THREADS);
+parameter CL_S_ACCEPT = clog2(S_ACCEPT);
 
 // default address computation
 function [M_COUNT*M_REGIONS*ADDR_WIDTH-1:0] calcBaseAddrs(input [31:0] dummy);
@@ -261,14 +261,14 @@ reg match;
 reg trans_start;
 reg trans_complete;
 
-reg [$clog2(S_ACCEPT+1)-1:0] trans_count_reg = 0;
+reg [clog2(S_ACCEPT+1)-1:0] trans_count_reg = 0;
 wire trans_limit = trans_count_reg >= S_ACCEPT && !trans_complete;
 
 // transfer ID thread tracking
 reg [ID_WIDTH-1:0] thread_id_reg[S_INT_THREADS-1:0];
 reg [CL_M_COUNT-1:0] thread_m_reg[S_INT_THREADS-1:0];
 reg [3:0] thread_region_reg[S_INT_THREADS-1:0];
-reg [$clog2(S_ACCEPT+1)-1:0] thread_count_reg[S_INT_THREADS-1:0];
+reg [clog2(S_ACCEPT+1)-1:0] thread_count_reg[S_INT_THREADS-1:0];
 
 wire [S_INT_THREADS-1:0] thread_active;
 wire [S_INT_THREADS-1:0] thread_match;

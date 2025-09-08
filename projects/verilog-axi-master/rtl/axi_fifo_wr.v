@@ -124,7 +124,7 @@ parameter LAST_OFFSET  = STRB_OFFSET + STRB_WIDTH;
 parameter WUSER_OFFSET = LAST_OFFSET + 1;
 parameter WWIDTH       = WUSER_OFFSET + (WUSER_ENABLE ? WUSER_WIDTH : 0);
 
-parameter FIFO_ADDR_WIDTH = $clog2(FIFO_DEPTH);
+parameter FIFO_ADDR_WIDTH = clog2(FIFO_DEPTH);
 
 reg [FIFO_ADDR_WIDTH:0] wr_ptr_reg = {FIFO_ADDR_WIDTH+1{1'b0}}, wr_ptr_next;
 reg [FIFO_ADDR_WIDTH:0] wr_addr_reg = {FIFO_ADDR_WIDTH+1{1'b0}};

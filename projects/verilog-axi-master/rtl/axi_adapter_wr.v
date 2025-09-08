@@ -125,14 +125,14 @@ module axi_adapter_wr #
     output wire                     m_axi_bready
 );
 
-parameter S_ADDR_BIT_OFFSET = $clog2(S_STRB_WIDTH);
-parameter M_ADDR_BIT_OFFSET = $clog2(M_STRB_WIDTH);
+parameter S_ADDR_BIT_OFFSET = clog2(S_STRB_WIDTH);
+parameter M_ADDR_BIT_OFFSET = clog2(M_STRB_WIDTH);
 parameter S_WORD_WIDTH = S_STRB_WIDTH;
 parameter M_WORD_WIDTH = M_STRB_WIDTH;
 parameter S_WORD_SIZE = S_DATA_WIDTH/S_WORD_WIDTH;
 parameter M_WORD_SIZE = M_DATA_WIDTH/M_WORD_WIDTH;
-parameter S_BURST_SIZE = $clog2(S_STRB_WIDTH);
-parameter M_BURST_SIZE = $clog2(M_STRB_WIDTH);
+parameter S_BURST_SIZE = clog2(S_STRB_WIDTH);
+parameter M_BURST_SIZE = clog2(M_STRB_WIDTH);
 
 // output bus is wider
 parameter EXPAND = M_STRB_WIDTH > S_STRB_WIDTH;
@@ -161,12 +161,12 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(S_WORD_WIDTH) != S_WORD_WIDTH) begin
+    if (2**clog2(S_WORD_WIDTH) != S_WORD_WIDTH) begin
         $error("Error: AXI slave interface word width must be even power of two (instance %m)");
         $finish;
     end
 
-    if (2**$clog2(M_WORD_WIDTH) != M_WORD_WIDTH) begin
+    if (2**clog2(M_WORD_WIDTH) != M_WORD_WIDTH) begin
         $error("Error: AXI master interface word width must be even power of two (instance %m)");
         $finish;
     end
@@ -384,7 +384,7 @@ always @* begin
                         if (CONVERT_NARROW_BURST) begin
                             m_axi_awlen_next = (({{S_ADDR_BIT_OFFSET+1{1'b0}}, s_axi_awlen} << s_axi_awsize) + s_axi_awaddr[M_ADDR_BIT_OFFSET-1:0]) >> M_BURST_SIZE;
                         end else begin
-                            m_axi_awlen_next = ({1'b0, s_axi_awlen} + s_axi_awaddr[M_ADDR_BIT_OFFSET-1:S_ADDR_BIT_OFFSET]) >> $clog2(SEGMENT_COUNT);
+                            m_axi_awlen_next = ({1'b0, s_axi_awlen} + s_axi_awaddr[M_ADDR_BIT_OFFSET-1:S_ADDR_BIT_OFFSET]) >> clog2(SEGMENT_COUNT);
                         end
                         m_axi_awsize_next = M_BURST_SIZE;
                         state_next = STATE_DATA_2;

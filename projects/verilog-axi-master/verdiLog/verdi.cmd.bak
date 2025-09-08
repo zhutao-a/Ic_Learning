@@ -1,0 +1,4 @@
+debImport "./common/function.v" "-f" "rtl/filelist.f"
+nsMsgSelect -range {0 0-0}
+nsMsgAction -tab cmpl -index {0 0}
+debExit

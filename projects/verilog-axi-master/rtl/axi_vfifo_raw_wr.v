@@ -121,25 +121,25 @@ module axi_vfifo_raw_wr #
 
 localparam AXI_BYTE_LANES = AXI_STRB_WIDTH;
 localparam AXI_BYTE_SIZE = AXI_DATA_WIDTH/AXI_BYTE_LANES;
-localparam AXI_BURST_SIZE = $clog2(AXI_STRB_WIDTH);
+localparam AXI_BURST_SIZE = clog2(AXI_STRB_WIDTH);
 localparam AXI_MAX_BURST_SIZE = AXI_MAX_BURST_LEN << AXI_BURST_SIZE;
 
-localparam OFFSET_ADDR_WIDTH = AXI_STRB_WIDTH > 1 ? $clog2(AXI_STRB_WIDTH) : 1;
+localparam OFFSET_ADDR_WIDTH = AXI_STRB_WIDTH > 1 ? clog2(AXI_STRB_WIDTH) : 1;
 localparam OFFSET_ADDR_MASK = AXI_STRB_WIDTH > 1 ? {OFFSET_ADDR_WIDTH{1'b1}} : 0;
-localparam ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << $clog2(AXI_STRB_WIDTH);
+localparam ADDR_MASK = {AXI_ADDR_WIDTH{1'b1}} << clog2(AXI_STRB_WIDTH);
 localparam CYCLE_COUNT_WIDTH = LEN_WIDTH - AXI_BURST_SIZE + 1;
 
-localparam WRITE_FIFO_ADDR_WIDTH = $clog2(WRITE_FIFO_DEPTH);
+localparam WRITE_FIFO_ADDR_WIDTH = clog2(WRITE_FIFO_DEPTH);
 localparam RESP_FIFO_ADDR_WIDTH = 5;
 
-// mask(x) = (2**$clog2(x))-1
+// mask(x) = (2**clog2(x))-1
 // log2(min(x, y, z)) = (mask & mask & mask)+1
-// floor(log2(x)) = $clog2(x+1)-1
+// floor(log2(x)) = clog2(x+1)-1
 // floor(log2(min(AXI_MAX_BURST_LEN, WRITE_MAX_BURST_LEN, 2**(WRITE_FIFO_ADDR_WIDTH-1), 4096/AXI_BYTE_LANES)))
-localparam WRITE_MAX_BURST_LEN_INT = ((2**($clog2(AXI_MAX_BURST_LEN+1)-1)-1) & (2**($clog2(WRITE_MAX_BURST_LEN+1)-1)-1) & (2**(WRITE_FIFO_ADDR_WIDTH-1)-1) & ((4096/AXI_BYTE_LANES)-1)) + 1;
+localparam WRITE_MAX_BURST_LEN_INT = ((2**(clog2(AXI_MAX_BURST_LEN+1)-1)-1) & (2**(clog2(WRITE_MAX_BURST_LEN+1)-1)-1) & (2**(WRITE_FIFO_ADDR_WIDTH-1)-1) & ((4096/AXI_BYTE_LANES)-1)) + 1;
 localparam WRITE_MAX_BURST_SIZE_INT = WRITE_MAX_BURST_LEN_INT << AXI_BURST_SIZE;
-localparam WRITE_BURST_LEN_WIDTH = $clog2(WRITE_MAX_BURST_LEN_INT);
-localparam WRITE_BURST_ADDR_WIDTH = $clog2(WRITE_MAX_BURST_SIZE_INT);
+localparam WRITE_BURST_LEN_WIDTH = clog2(WRITE_MAX_BURST_LEN_INT);
+localparam WRITE_BURST_ADDR_WIDTH = clog2(WRITE_MAX_BURST_SIZE_INT);
 localparam WRITE_BURST_ADDR_MASK = WRITE_BURST_ADDR_WIDTH > 1 ? {WRITE_BURST_ADDR_WIDTH{1'b1}} : 0;
 
 // validate parameters
@@ -149,7 +149,7 @@ initial begin
         $finish;
     end
 
-    if (2**$clog2(AXI_BYTE_LANES) != AXI_BYTE_LANES) begin
+    if (2**clog2(AXI_BYTE_LANES) != AXI_BYTE_LANES) begin
         $error("Error: AXI byte lane count must be even power of two (instance %m)");
         $finish;
     end
